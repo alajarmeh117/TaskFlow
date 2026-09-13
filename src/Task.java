@@ -24,26 +24,32 @@ public class Task {
 	}
 
 	public Task(User owner, String title, LocalDateTime dueDate, Task.PriorityLevel priority) {
-		super();
+		this();
 		this.owner = owner;
 		this.title = title;
 		this.dueDate = dueDate;
 		this.priority = priority;
 	}
 	
-	public void  start() {    //  To change the status from TODO to IN_PROGRESS
-		
-		
+	public void  start() throws InvalidTaskStateException{ //  To change the status from TODO to IN_PROGRESS
+		 if (status == TaskStatus.TODO )
+		    status = TaskStatus.IN_PROGRESS ; 
+		 
+		 else 
+			 throw new InvalidTaskStateException("--------------");
 	}
 	 
-	public void complete() {  // To change the status from IN_PROGRESS  to DONE
-		
+	public void complete() throws InvalidTaskStateException {  // To change the status from IN_PROGRESS  to DONE
+		if (status == TaskStatus.IN_PROGRESS)
+			status = TaskStatus.DONE ; 
+		else 
+			throw new InvalidTaskStateException("-----------------");
 		
 	}
 	
-	public void markOverdue() { // The mission time ended before it was completed ( DONE ) .
-
-		
+	public void markOverdue() { // The mission time ended before it was completed ( DONE ) .  == > Statues + date
+        if ((status == TaskStatus.TODO || status == TaskStatus.IN_PROGRESS) && (LocalDateTime.now()).isAfter(dueDate))
+        	 status = TaskStatus.OVERDUE ;     	
 	}
 	
 
