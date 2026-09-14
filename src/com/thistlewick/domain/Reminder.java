@@ -35,6 +35,12 @@ public class Reminder {
 	   }
 	   public DeliveryChannel getDeliveryChannel() {
 		   return deliveryChannel;
-	   }   
+	   }
+	  
+	   public Integer getId() {
+		    return id;
+		}
 	   
+	   
+	 
 }

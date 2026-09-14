@@ -6,12 +6,9 @@ import java.util.List;
 
 public class TaskSorter {
 
-    // Big-O: O(n log n) Time Complexity, O(n) Space Complexity.
-    // تم اختيار Merge Sort لأنه يضمن أداءً مستقراً (Stable) وهو الأفضل لترتيب الكائنات،
-    // حيث يحافظ على الترتيب الأصلي للعناصر المتساوية، مما يسهل الفرز الثانوي (حسب الأولوية).
     public static void reorderByDueDate(List<Task> tasks) {
         if (tasks == null || tasks.size() <= 1) {
-            return; // حالة التوقف الأساسية (Base Case)
+            return; 
         }
         
         int mid = tasks.size() / 2;
@@ -31,7 +28,6 @@ public class TaskSorter {
             Task t1 = left.get(i);
             Task t2 = right.get(j);
 
-            // 1. الفرز الأساسي: حسب تاريخ الانتهاء (الأقرب أولاً)
             int dateComparison = t1.getDueDate().compareTo(t2.getDueDate());
             
             if (dateComparison < 0) {
@@ -39,8 +35,6 @@ public class TaskSorter {
             } else if (dateComparison > 0) {
                 result.set(k++, right.get(j++));
             } else {
-                // 2. الفرز الثانوي: إذا تساوى التاريخ، نفرز حسب الأولوية (HIGH ثم MEDIUM ثم LOW)
-                // الـ Enum ترتبيها الافتراضي (LOW=0, MEDIUM=1, HIGH=2)، لذا نعكس المقارنة لجلب الأهم أولاً
                 int priorityComparison = t2.getPriority().compareTo(t1.getPriority());
                 if (priorityComparison <= 0) {
                     result.set(k++, left.get(i++));
@@ -50,7 +44,6 @@ public class TaskSorter {
             }
         }
 
-        // تفريغ باقي العناصر إن وجدت
         while (i < left.size()) {
             result.set(k++, left.get(i++));
         }

@@ -1,22 +1,25 @@
+import com.thistlewick.domain.Reminder;
+import com.thistlewick.domain.Task;
+import com.thistlewick.domain.Task.PriorityLevel;
+import com.thistlewick.domain.User;
+import com.thistlewick.repository.ReminderRepository;
+import com.thistlewick.repository.TaskRepository;
+import com.thistlewick.repository.UserRepository;
+import com.thistlewick.service.ReminderCancellationObserver;
+import com.thistlewick.service.ReminderFactory;
+import com.thistlewick.service.TaskAnalytics;
+import com.thistlewick.service.TaskEventManager;
+import com.thistlewick.service.TaskSorter;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class Main {
-
-	public static void main(String[] args) {
-System.out.println("جاري محاولة الاتصال...");
+    public static void main(String[] args) {
         
-        // استخدام اسم الـ persistence-unit الموجود في ملف persistence.xml
-        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("TaskFlowPU");
-             EntityManager em = emf.createEntityManager()) {
-            
-            System.out.println("✅ تم الاتصال بقاعدة البيانات H2 عبر Hibernate بنجاح!");
-            
-        } catch (Exception e) {
-            System.err.println("❌ فشل الاتصال بقاعدة البيانات!");
-            e.printStackTrace();
-        }
-
-	}
-
+       
+    }
 }
