@@ -1,3 +1,4 @@
+package com.thistlewick.exception;
 
 public class InvalidEmailException extends Exception {
 	
